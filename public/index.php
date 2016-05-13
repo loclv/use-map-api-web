@@ -112,7 +112,7 @@
     /* ルート探索ボタン */
     function routeClick() {
 
-        from = beginLatLon;
+        from = map.getLatLon();
         to   = map.getLatLon();
         alert(status.text);
         /* 歩行者ルート探索を実行 */
@@ -122,7 +122,7 @@
         },function(status, res) {
             if (status.code == '000') {
                 /* 取得成功 */
-                // removeAllWidget();
+                removeAllWidget();
                 alert(status.text);
                 writeRoute(status, res);
             } else {
