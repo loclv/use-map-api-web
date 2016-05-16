@@ -64,7 +64,18 @@
     // ----------------------------------------------------
     function markerDisp(latlon) {
       var itemlatlon = new ZDC.LatLon(latlon.lat, latlon.lon);
+      var marker = new ZDC.Marker(itemlatlon, ZDC.MARKER_COLOR_ID_BLUE_L)
+    /*
+     *  スタートとゴールのウィジットが他のマーカの
+     *  下にならないようにz-indexを設定します
+     */
+      marker.setZindex(110);
+      map.addWidget(marker);
+    }
+    function defaultMarkerDisp(latlon) {
+      var itemlatlon = new ZDC.LatLon(latlon.lat, latlon.lon);
       var marker = new ZDC.Marker(itemlatlon)
+
       map.addWidget(marker);
     }
     // ----------------------------------------------------
@@ -138,6 +149,7 @@
 
             /* クリックされた駅の緯度経度を保存 */
             select_eki_latlon = latlon;
+            defaultMarkerDisp(select_eki_latlon);
 
         });
 
@@ -148,7 +160,25 @@
 
     var from, to;
     var select_eki_latlon = {}, imgdir ='../../image/search/';
-
+    var guyde_type = {
+        'start': {
+        },
+        'end': {
+            custom: {
+                base: {
+                    src: imgdir + 'route_bg.png',
+                    imgSize: new ZDC.WH(35, 35),
+                    imgTL: new ZDC.TL(38, 0)
+                },
+                content: {
+                    src: imgdir + 'route_cat.png',
+                    imgSize: new ZDC.WH(35, 35),
+                    imgTL: new ZDC.TL(35, 0)
+                }
+            },
+            offset: ZDC.Pixel(0, -36)
+        }
+    };
     var line_property = {
         '通常通路':   {strokeColor: '#3000ff', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'},
         '横断歩道':   {strokeColor: '#008E00', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'},
@@ -177,7 +207,7 @@
         },function(status, res) {
             if (status.code == '000') {
                 /* 取得成功 */
-                removeAllWidget();
+                removeAllRoute();
                 writeRoute(status, res);
             } else {
                 /* 取得失敗 */
@@ -242,7 +272,7 @@
         msg_info.open();
     };
 
-    function removeAllWidget(){
+    function removeAllRoute(){
 
         for (var i=0,l=pl.length; i<l; i++) {
             pl[i].removeAllPoints();
@@ -258,7 +288,24 @@
         if (typeof msg_info != 'undefined') {
             map.removeWidget(msg_info);
         }
-    };
+
+        if (typeof start != 'undefined') {
+            map.removeWidget(start);
+        }
+
+        if (typeof end != 'undefined') {
+            map.removeWidget(end);
+        }    };
+
+    function removeBeginEndPoint () {
+        if (beginLatLon != null) {
+            map.removeWidget(beginLatLon);
+        }
+
+        if (endLatLon != null) {
+            map.removeWidget(endLatLon);
+        }
+    }
 
 //]]>
 </script>
