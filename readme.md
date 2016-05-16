@@ -1,3 +1,5 @@
+# Use map API for a web
+
 # How to use
 
 blog is name of project
@@ -10,6 +12,10 @@ $ php -S localhost:8888 -t public
 ```
 then open browser and open:
 http://localhost:8888/
+
+# APIのマニュアル
+
+[マニュアル](http://support.e-map.ne.jp/manuals/V20/)
 
 # Laravel PHP Framework
 
