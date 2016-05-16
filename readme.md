@@ -6,7 +6,7 @@ blog is name of project
 ```sh
 $ cd blog/
 $ sudo chmod 755 bootstrap/cache/
-$ sudo chmod 777 storage
+$ sudo chmod 755 storage
 $ php -S localhost:8888 -t public
 ```
 then open browser and open:

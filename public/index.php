@@ -72,6 +72,7 @@
       marker.setZindex(110);
       map.addWidget(marker);
     }
+
     function defaultMarkerDisp(latlon) {
       var itemlatlon = new ZDC.LatLon(latlon.lat, latlon.lon);
       var marker = new ZDC.Marker(itemlatlon)
@@ -98,6 +99,7 @@
                 writeTable(res);
             } else {
                 /* 取得失敗 */
+                removeDefaultPoint();
                 alert(status.text);
             }
         });
@@ -161,6 +163,8 @@
     var from, to;
     var select_eki_latlon = {}, imgdir ='../../image/search/';
     var guyde_type = {
+        'default': {
+        },
         'start': {
         },
         'end': {
@@ -295,7 +299,8 @@
 
         if (typeof end != 'undefined') {
             map.removeWidget(end);
-        }    };
+        }
+    };
 
     function removeBeginEndPoint () {
         if (beginLatLon != null) {
@@ -307,6 +312,9 @@
         }
     }
 
+    function removeDefaultPoint () {
+    }
+
 //]]>
 </script>
 </head>
@@ -314,6 +322,9 @@
 <body onload="loadMap();">
     <div id="ZMap" style="min-width: 100%; min-height: 100%; z-index: -1; position: absolute;"></div>
     <br>
+    <h4 id="h4label" class="center-block text-center" style="width: 36%; background-color: #00D5FF; border-style: solid; border-width: 4px; border-radius: 48px; border-color: #00D5FF;">
+        touch the map to set begin point
+    </h4>
     <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF;background-color: #00D5FF; font-size: 24px;" id="zoom_in_btn" onclick="zoomIn()">
         +
     </button>
@@ -321,12 +332,10 @@
     <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF;background-color: #00D5FF; font-size: 24px;" id="zoom_out_btn" onclick="zoomOut()">
         -
     </button>
-    <h4 id="h4label" style="width: 32%; text-align: center; background-color: #00D5FF; border-style: solid; border-width: 4px; border-radius: 48px; border-color: #00D5FF;">
-        touch the map to set begin point
-    </h4>
-    <div id="search-area" style="width: 600px; height: 175px; bottom: 0px; left:20px; position:absolute; background-color: #00D5FF;">
-        <input type="text" id="word" value="東京">
-        <input type="button" id="search-btn" value='検索' onclick='searchByWordClick();'>
+
+    <div id="search-area" style="width: 600px; height: 175px; bottom: 0px; left:20px; position:absolute; background-color: #00D5FF;" class="panel-success">
+        <input type="text" class="form-control" id="word" value="東京" placeholder="住所">
+        <input type="button" class="btn btn-success" id="search-btn" value='検索' onclick='searchByWordClick();'>
         <div id="search-result" style="overflow: scroll; height: 150px">
         </div>
     </div>
