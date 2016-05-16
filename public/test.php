@@ -4,9 +4,14 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
 <script src="http://test.api.its-mo.com/cgi/loader.cgi?key=JSZ752c40ded32d&ver=2.0&api=zdcmap.js,search.js,shape.js&enc=EUC&force=1" type="text/javascript"></script>
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<script src="js/bootstrap.js"></script>
+
 <script type="text/javascript">
 //<![CDATA[
-
+    /* 東京 */
     var map,
         lat = 35.6778614, lon = 139.7703167, latlon = new ZDC.LatLon(lat, lon);
 
@@ -14,16 +19,49 @@
 
         map = new ZDC.Map(
         document.getElementById('ZMap'),{
-            latlon : new ZDC.LatLon(lat, lon),
-            zoom : 8
+            latlon: new ZDC.LatLon(lat, lon),
+            zoom: 8
         });
-
-        var center = new ZDC.MapCenter();
-        map.addWidget(center);
+        /* 地図をクリックしたときの動作 */
+        ZDC.addListener(map, ZDC.MAP_CLICK, getClickLatLon);
     };
+    // ----------------------------------------------------
+    function zoomIn() {
+      map.zoomIn();
+    }
 
+    function zoomOut() {
+      map.zoomOut();
+    }
+    // ----------------------------------------------------
+    var isBeginPoint = true,
+        isSearchRouteComplete = true,
+        beginLatLon = new ZDC.LatLon(lat, lon),
+        endLatLon = new ZDC.LatLon(lat, lon);
+    /* クリックした地点の緯度経度を表示する */
+    function getClickLatLon() {
+      var latlon =  map.getClickLatLon();
+      // alert('');
+      markerDisp(latlon);
+      if (isBeginPoint) {
+        beginLatLon = latlon;
+        isBeginPoint = false
+        alert(status.text+', this is begin point');
+      } else {
+        endLatLon = latlon;
+        alert(status.text+', this is end point');
+        searchRoute();
+      }
+    };
+    // ----------------------------------------------------
+    function markerDisp(latlon) {
+      var itemlatlon = new ZDC.LatLon(latlon.lat, latlon.lon);
+      var marker = new ZDC.Marker(itemlatlon)
+      map.addWidget(marker);
+    }
+    // ----------------------------------------------------
     /* 検索ボタン */
-    function searchClick(){
+    function searchByWordClick(){
         var word = document.getElementById('word').value;
         if (word == '') {
             return;
@@ -135,26 +173,25 @@
         }
     };
     var line_property = {
-        '通常通路':   {strokeColor: '#3000ff', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'},
-        '横断歩道':   {strokeColor: '#008E00', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'},
-        '横断通路':   {strokeColor: '#007777', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'},
-        '歩道橋':     {strokeColor: '#880000', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'},
-        '踏切内通路': {strokeColor: '#008800', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'},
-        '連絡通路':   {strokeColor: '#000088', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'},
-        '建物内通路': {strokeColor: '#550000', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'},
-        '敷地内通路': {strokeColor: '#005500', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'},
-        '乗換リンク': {strokeColor: '#000055', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'},
-        '道路外':     {strokeColor: '#110000', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'},
-        '引き込みリンク':{strokeColor: '#FF0000', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'},
-        '通路外':{strokeColor: '#00FF00', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'}
+        '通常通路':   {strokeColor: '#3000ff', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'},
+        '横断歩道':   {strokeColor: '#008E00', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'},
+        '横断通路':   {strokeColor: '#007777', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'},
+        '歩道橋':     {strokeColor: '#880000', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'},
+        '踏切内通路': {strokeColor: '#008800', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'},
+        '連絡通路':   {strokeColor: '#000088', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'},
+        '建物内通路': {strokeColor: '#550000', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'},
+        '敷地内通路': {strokeColor: '#005500', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'},
+        '乗換リンク': {strokeColor: '#000055', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'},
+        '道路外':     {strokeColor: '#110000', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'},
+        '引き込みリンク':{strokeColor: '#FF0000', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'},
+        '通路外':{strokeColor: '#00FF00', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'}
     };
 
-    var mode;
     /* ルート探索ボタン */
-    function routeClick() {
+    function searchRoute() {
 
-        from = select_eki_latlon;
-        to   = map.getLatLon();
+        from = beginLatLon;
+        to   = endLatLon;
 
         /* 歩行者ルート探索を実行 */
         ZDC.Search.getRouteByWalk({
@@ -281,20 +318,24 @@
 
 //]]>
 </script>
-
-<style>
-div.eki-list:hover{
-    background-color: #C8FFFF;
-}
-</style>
 </head>
 
 <body onload="loadMap();">
-    <div id="ZMap" style="border:1px solid #777777; width:500px; height:300px; top:200px; left:20px; position:absolute;"></div>
-    <div id="search-area" style="width:600px; height:175px; top:0px; left:20px; position:absolute;">
+    <div id="ZMap" style="min-width: 100%; min-height: 100%; z-index: -1; position: absolute;"></div>
+    <br>
+    <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF;background-color: #00D5FF; font-size: 24px;" id="zoom_in_btn" onclick="zoomIn()">
+        +
+    </button>
+    <br>
+    <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF;background-color: #00D5FF; font-size: 24px;" id="zoom_out_btn" onclick="zoomOut()">
+        -
+    </button>
+    <h4 style="width: 32%; text-align: center; background-color: #00D5FF; border-style: solid; border-width: 4px; border-radius: 48px; border-color: #00D5FF;">
+        touch the map to set begin point
+    </h4>
+    <div id="search-area" style="width: 600px; height: 175px; bottom: 0px; left:20px; position:absolute; background-color: #00D5FF;">
         <input type="text" id="word" value="東京">
-        <input type="button" id="search-btn" value='検索' onclick='searchClick();'>
-        <input type="button" id="route-btn"  value='ルート探索' onclick='routeClick();'>
+        <input type="button" id="search-btn" value='検索' onclick='searchByWordClick();'>
         <div id="search-result" style="overflow: scroll; height: 150px">
         </div>
     </div>
