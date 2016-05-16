@@ -7,7 +7,6 @@ blog is name of project
 $ cd blog/
 $ sudo chmod 755 bootstrap/cache/
 $ sudo chmod 777 storage
-$ cd public/
 $ php -S localhost:8888 -t public
 ```
 then open browser and open:
@@ -44,4 +43,5 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+
 API from [ZDC](https://www.zenrin-datacom.net/)
