@@ -1,3 +1,16 @@
+# How to use
+
+blog is name of project
+```sh
+$ cd blog/
+$ sudo chmod 755 bootstrap/cache/
+$ sudo chmod 777 storage
+$ cd blog/public/
+$ php -S localhost:8888 -t public
+```
+then open browser and open:
+http://localhost:8888/
+
 # Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
