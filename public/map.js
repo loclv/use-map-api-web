@@ -81,9 +81,13 @@ function changeInforLabel(isBeginPoint) {
     if (isBeginPoint) {
         document.getElementById("h4label").innerHTML =
             "touch again to chose destination point and search route";
+        document.getElementById("h4label").style.backgroundColor =
+            "#00FA9A";
     } else {
         document.getElementById("h4label").innerHTML =
             "touch the map to set begin point";
+        document.getElementById("h4label").style.backgroundColor =
+            "#00D5FF";
     }
 }
 // ----------------------------------------------------
@@ -106,7 +110,6 @@ function execSearch(word){
             writeTable(res);
         } else {
             /* 取得失敗 */
-            removeDefaultPoint();
             alert(status.text);
         }
     });
@@ -171,9 +174,20 @@ var from,
     to,
     select_eki_latlon = {}, imgdir ='../../image/search/',
     guyde_type = {
-    'default': {
-    },
     'start': {
+        custom: {
+            base: {
+                src: imgdir + 'route_bg.png',
+                imgSize: new ZDC.WH(35, 35),
+                imgTL: new ZDC.TL(0, 0)
+            },
+            content: {
+                src: imgdir + 'route_cat.png',
+                imgSize: new ZDC.WH(35, 35),
+                imgTL: new ZDC.TL(0, 0)
+            }
+        },
+        offset: ZDC.Pixel(0, -36)
     },
     'end': {
         custom: {
@@ -189,7 +203,8 @@ var from,
             }
         },
         offset: ZDC.Pixel(0, -36)
-    }};
+    }
+};
 var line_property = {
     '通常通路':   {strokeColor: '#3000ff', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'},
     '横断歩道':   {strokeColor: '#008E00', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'},
@@ -268,11 +283,11 @@ var msg_info;
 /* マーカクリックイベント */
 function markerClick() {
 
-    var html = '<div style = "width:200px; height:50px;">';
-    html += '<table border="1" style="width:180px;">';
-    html += '<tr><td width="35%" style="font-size:10pt;">通路種別</td><td style="font-size:10pt;">' +
+    var html = '<div style = "width: 256px; height: 112px; background-color: #00D5FF;">';
+    html += '<table border="2" style="width: 180px;">';
+    html += '<tr><td width="35%" style="font-size: 12pt;">通路種別</td><td style="font-size: 12pt;">' +
         this.link.structureType + '</td></tr>';
-    html += '<tr><td style="font-size:10pt;">構造種別</td><td style="font-size:10pt;">' +
+    html += '<tr><td style="font-size: 12pt;">構造種別</td><td style="font-size: 12pt;">' +
         this.link.type + '</td></tr></tbody></table></div>';
     if (typeof msg_info != 'undefined') {
         map.removeWidget(msg_info);

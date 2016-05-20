@@ -10,7 +10,7 @@
 <body onload="loadMap();">
     <div id="ZMap" style="min-width: 100%; min-height: 100%; z-index: -1; position: absolute;"></div>
     <br>
-    <h4 id="h4label" class="center-block text-center" style="width: 36%; background-color: #00D5FF; border-style: solid; border-width: 4px; border-radius: 48px; border-color: #00D5FF;">
+    <h4 id="h4label" class="center-block text-center" style="width: 36%; background-color: #00D5FF; border-radius: 48px; border-color: #00D5FF;">
         touch the map to set begin point
     </h4>
     <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF;background-color: #00D5FF; font-size: 24px;" id="zoom_in_btn" onclick="zoomIn()">
