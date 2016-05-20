@@ -1,7 +1,15 @@
 
 /* 東京 */
 var map,
-    lat = 35.6778614, lon = 139.7703167, latlon = new ZDC.LatLon(lat, lon);
+    lat = 35.6778614,
+    lon = 139.7703167,
+    latlon = new ZDC.LatLon(lat, lon),
+    isBeginPoint = true,
+    isSearchRouteComplete = true,
+    beginLatLon = new ZDC.LatLon(lat, lon),
+    endLatLon = new ZDC.LatLon(lat, lon),
+    beginMarker = new ZDC.Marker(latlon, ZDC.MARKER_COLOR_ID_RED_S),
+    endMarker = new ZDC.Marker(latlon, ZDC.MARKER_COLOR_ID_RED_S);
 
 function loadMap() {
 
@@ -12,6 +20,9 @@ function loadMap() {
     });
     /* 地図をクリックしたときの動作 */
     ZDC.addListener(map, ZDC.MAP_CLICK, getClickLatLon);
+    initBeginEndMarker();
+    map.addWidget(beginMarker);
+    map.addWidget(endMarker);
 }
 // ----------------------------------------------------
 function zoomIn() {
@@ -22,23 +33,28 @@ function zoomOut() {
     map.zoomOut();
 }
 // ----------------------------------------------------
-var isBeginPoint = true,
-    isSearchRouteComplete = true,
-    beginLatLon = new ZDC.LatLon(lat, lon),
-    endLatLon = new ZDC.LatLon(lat, lon),
-    beginMarker = new ZDC.Marker(latlon, ZDC.MARKER_COLOR_ID_RED_S),
-    endMarker = new ZDC.Marker(latlon, ZDC.MARKER_COLOR_ID_RED_S);
+function initBeginEndMarker() {
+    /*
+    *  スタートとゴールのウィジットが他のマーカの
+    *  下にならないようにz-indexを設定します
+    */
+    beginMarker.setZindex(110);
+    endMarker.setZindex(110);
+    beginMarker.setTitle("start");
+    endMarker.setTitle("end")
+}
 /* クリックした地点の緯度経度を表示する */
 function getClickLatLon() {
     if (isBeginPoint) {
-        beginLatLon = map.getClickLatLon();
-        markerDisp(beginLatLon);
+        beginMarker.moveLatLon(map.getClickLatLon());
+        map.addWidget(beginMarker);
         changeLabelText(isBeginPoint);
         isBeginPoint = false
     } else {
-        endLatLon = map.getClickLatLon();
-        markerDisp(endLatLon);
+        endMarker.moveLatLon(map.getClickLatLon());
+        map.addWidget(endMarker);
         searchRoute();
+        changeLabelText(isBeginPoint);
         isBeginPoint = true
     }
 }
@@ -54,17 +70,11 @@ function changeLabelText(isBeginPoint) {
     
 }
 // ----------------------------------------------------
-function markerDisp(latlon) {
+function markerDispAt(latlon) {
     var itemlatlon = new ZDC.LatLon(latlon.lat, latlon.lon);
     var marker = new ZDC.Marker(itemlatlon, ZDC.MARKER_COLOR_ID_RED_S)
-    /*
-    *  スタートとゴールのウィジットが他のマーカの
-    *  下にならないようにz-indexを設定します
-    */
-    marker.setZindex(110);
     map.addWidget(marker);
 }
-
 function defaultMarkerDisp(latlon) {
     var itemlatlon = new ZDC.LatLon(latlon.lat, latlon.lon);
     var marker = new ZDC.Marker(itemlatlon)
@@ -193,8 +203,8 @@ var line_property = {
 /* ルート探索ボタン */
 function searchRoute() {
 
-    from = beginLatLon;
-    to   = endLatLon;
+    from = beginMarker.getLatLon();
+    to   = endMarker.getLatLon();
 
     /* 歩行者ルート探索を実行 */
     ZDC.Search.getRouteByWalk({
@@ -293,16 +303,6 @@ function removeAllRoute(){
 
     if (typeof end != 'undefined') {
         map.removeWidget(end);
-    }
-}
-
-function removeBeginEndPoint() {
-    if (typeof beginLatLon != 'undefined') {
-        map.removeWidget(beginLatLon);
-    }
-
-    if (typeof endLatLon != 'undefined') {
-        map.removeWidget(endLatLon);
     }
 }
 
