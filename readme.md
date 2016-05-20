@@ -2,7 +2,7 @@
 
 # How to use
 
-blog is name of project
+**blog** is name of project
 ```sh
 $ cd blog/
 $ sudo chmod 755 bootstrap/cache/
