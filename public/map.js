@@ -48,7 +48,7 @@ function initBeginEndMarker() {
     beginMarker.setZindex(110);
     endMarker.setZindex(110);
     beginMarker.setTitle("start");
-    endMarker.setTitle("end")
+    endMarker.setTitle("end");
 }
 
 function initSearchResultMarker() {
@@ -66,18 +66,18 @@ function getClickLatLon() {
         endMarker.hidden();
         beginMarker.moveLatLon(map.getClickLatLon());
         beginMarker.visible();
-        changeLabelText(isBeginPoint);
-        isBeginPoint = false
+        changeInforLabel(isBeginPoint);
+        isBeginPoint = false;
     } else {
         endMarker.moveLatLon(map.getClickLatLon());
         endMarker.visible();
         searchRoute();
-        changeLabelText(isBeginPoint);
-        isBeginPoint = true
+        changeInforLabel(isBeginPoint);
+        isBeginPoint = true;
     }
 }
 
-function changeLabelText(isBeginPoint) {
+function changeInforLabel(isBeginPoint) {
     if (isBeginPoint) {
         document.getElementById("h4label").innerHTML =
             "touch again to chose destination point and search route";
@@ -85,19 +85,6 @@ function changeLabelText(isBeginPoint) {
         document.getElementById("h4label").innerHTML =
             "touch the map to set begin point";
     }
-    
-}
-// ----------------------------------------------------
-function markerDispAt(latlon) {
-    var itemlatlon = new ZDC.LatLon(latlon.lat, latlon.lon);
-    var marker = new ZDC.Marker(itemlatlon, ZDC.MARKER_COLOR_ID_RED_S)
-    map.addWidget(marker);
-}
-function defaultMarkerDisp(latlon) {
-    var itemlatlon = new ZDC.LatLon(latlon.lat, latlon.lon);
-    var marker = new ZDC.Marker(itemlatlon)
-
-    map.addWidget(marker);
 }
 // ----------------------------------------------------
 /* 検索ボタン */
@@ -180,9 +167,10 @@ function createTr(text,latlon) {
     return tr;
 }
 
-var from, to;
-var select_eki_latlon = {}, imgdir ='../../image/search/';
-var guyde_type = {
+var from,
+    to,
+    select_eki_latlon = {}, imgdir ='../../image/search/',
+    guyde_type = {
     'default': {
     },
     'start': {
@@ -201,8 +189,7 @@ var guyde_type = {
             }
         },
         offset: ZDC.Pixel(0, -36)
-    }
-};
+    }};
 var line_property = {
     '通常通路':   {strokeColor: '#3000ff', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'},
     '横断歩道':   {strokeColor: '#008E00', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'},
