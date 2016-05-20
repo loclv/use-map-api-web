@@ -6,9 +6,7 @@ var map,
     latlon = new ZDC.LatLon(lat, lon),
     isBeginPoint = true,
     isSearchRouteComplete = true,
-    beginLatLon = new ZDC.LatLon(lat, lon),
-    endLatLon = new ZDC.LatLon(lat, lon),
-    beginMarker = new ZDC.Marker(latlon, ZDC.MARKER_COLOR_ID_RED_S),
+    beginMarker = new ZDC.Marker(latlon, ZDC.MARKER_COLOR_ID_GREEN_S),
     endMarker = new ZDC.Marker(latlon, ZDC.MARKER_COLOR_ID_RED_S);
 
 function loadMap() {
@@ -23,6 +21,8 @@ function loadMap() {
     initBeginEndMarker();
     map.addWidget(beginMarker);
     map.addWidget(endMarker);
+    beginMarker.hidden();
+    endMarker.hidden();
 }
 // ----------------------------------------------------
 function zoomIn() {
@@ -46,13 +46,14 @@ function initBeginEndMarker() {
 /* クリックした地点の緯度経度を表示する */
 function getClickLatLon() {
     if (isBeginPoint) {
+        endMarker.hidden();
         beginMarker.moveLatLon(map.getClickLatLon());
-        map.addWidget(beginMarker);
+        beginMarker.visible();
         changeLabelText(isBeginPoint);
         isBeginPoint = false
     } else {
         endMarker.moveLatLon(map.getClickLatLon());
-        map.addWidget(endMarker);
+        endMarker.visible();
         searchRoute();
         changeLabelText(isBeginPoint);
         isBeginPoint = true
@@ -296,15 +297,4 @@ function removeAllRoute(){
     if (typeof msg_info != 'undefined') {
         map.removeWidget(msg_info);
     }
-
-    if (typeof start != 'undefined') {
-        map.removeWidget(start);
-    }
-
-    if (typeof end != 'undefined') {
-        map.removeWidget(end);
-    }
-}
-
-function removeDefaultPoint() {
 }
