@@ -24,7 +24,7 @@
         });
         /* 地図をクリックしたときの動作 */
         ZDC.addListener(map, ZDC.MAP_CLICK, getClickLatLon);
-    };
+    }
     // ----------------------------------------------------
     function zoomIn() {
       map.zoomIn();
@@ -37,21 +37,23 @@
     var isBeginPoint = true,
         isSearchRouteComplete = true,
         beginLatLon = new ZDC.LatLon(lat, lon),
-        endLatLon = new ZDC.LatLon(lat, lon);
+        endLatLon = new ZDC.LatLon(lat, lon),
+        beginMarker = new ZDC.Marker(latlon, ZDC.MARKER_COLOR_ID_RED_S),
+        endMarker = new ZDC.Marker(latlon, ZDC.MARKER_COLOR_ID_RED_S);
     /* クリックした地点の緯度経度を表示する */
     function getClickLatLon() {
-      var latlon =  map.getClickLatLon();
-      markerDisp(latlon);
       if (isBeginPoint) {
-        beginLatLon = latlon;
+        beginLatLon = map.getClickLatLon();
+        markerDisp(beginLatLon);
         changeLabelText(isBeginPoint);
         isBeginPoint = false
       } else {
-        endLatLon = latlon;
+        endLatLon = map.getClickLatLon();
+        markerDisp(endLatLon);
         searchRoute();
         isBeginPoint = true
       }
-    };
+    }
 
     function changeLabelText(isBeginPoint) {
         if (isBeginPoint) {
@@ -64,7 +66,7 @@
     // ----------------------------------------------------
     function markerDisp(latlon) {
       var itemlatlon = new ZDC.LatLon(latlon.lat, latlon.lon);
-      var marker = new ZDC.Marker(itemlatlon, ZDC.MARKER_COLOR_ID_BLUE_L)
+      var marker = new ZDC.Marker(itemlatlon, ZDC.MARKER_COLOR_ID_RED_S)
     /*
      *  スタートとゴールのウィジットが他のマーカの
      *  下にならないようにz-indexを設定します
@@ -88,7 +90,7 @@
         } else {
             execSearch(word);
         }
-    };
+    }
 
     /* 検索成功時の処理 */
     function execSearch(word){
@@ -103,7 +105,7 @@
                 alert(status.text);
             }
         });
-    };
+    }
 
     /* 駅検索結果テーブル作成 */
     function initTable() {
@@ -111,7 +113,7 @@
         while (element.firstChild) {
           element.removeChild(element.firstChild);
         }
-    };
+    }
 
     /* 駅検索結果テーブル作成 */
     function writeTable(res) {
@@ -128,7 +130,7 @@
             table.appendChild(tbody);
         }
         document.getElementById('search-result').appendChild(table);
-    };
+    }
 
     /* 駅検索結果テーブル作成 */
     function createTr(text,latlon) {
@@ -158,7 +160,7 @@
         td.appendChild(div);
         tr.appendChild(td);
         return tr;
-    };
+    }
 
     var from, to;
     var select_eki_latlon = {}, imgdir ='../../image/search/';
@@ -218,7 +220,7 @@
                 alert(status.text);
             }
         });
-    };
+    }
 
     var pl = [];
     var mk = [];
@@ -255,7 +257,7 @@
                 mk.push(marker);
             }
         }
-    };
+    }
 
     var msg_info;
     /* マーカクリックイベント */
@@ -274,7 +276,7 @@
                 );
         map.addWidget(msg_info);
         msg_info.open();
-    };
+    }
 
     function removeAllRoute(){
 
@@ -300,19 +302,19 @@
         if (typeof end != 'undefined') {
             map.removeWidget(end);
         }
-    };
+    }
 
-    function removeBeginEndPoint () {
-        if (beginLatLon != null) {
+    function removeBeginEndPoint() {
+        if (typeof beginLatLon != 'undefined') {
             map.removeWidget(beginLatLon);
         }
 
-        if (endLatLon != null) {
+        if (typeof endLatLon != 'undefined') {
             map.removeWidget(endLatLon);
         }
     }
 
-    function removeDefaultPoint () {
+    function removeDefaultPoint() {
     }
 
 //]]>
