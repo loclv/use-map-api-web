@@ -6,8 +6,9 @@ var map,
     latlon = new ZDC.LatLon(lat, lon),
     isBeginPoint = true,
     isSearchRouteComplete = true,
-    beginMarker = new ZDC.Marker(latlon, ZDC.MARKER_COLOR_ID_GREEN_S),
-    endMarker = new ZDC.Marker(latlon, ZDC.MARKER_COLOR_ID_RED_S);
+    beginMarker,
+    endMarker,
+    searchResultMarker;
 
 function loadMap() {
 
@@ -23,6 +24,10 @@ function loadMap() {
     map.addWidget(endMarker);
     beginMarker.hidden();
     endMarker.hidden();
+
+    initSearchResultMarker();
+    map.addWidget(searchResultMarker);
+    searchResultMarker.hidden();
 }
 // ----------------------------------------------------
 function zoomIn() {
@@ -34,6 +39,8 @@ function zoomOut() {
 }
 // ----------------------------------------------------
 function initBeginEndMarker() {
+    beginMarker = new ZDC.Marker(latlon, ZDC.MARKER_COLOR_ID_GREEN_S);
+    endMarker = new ZDC.Marker(latlon, ZDC.MARKER_COLOR_ID_RED_S);
     /*
     *  スタートとゴールのウィジットが他のマーカの
     *  下にならないようにz-indexを設定します
@@ -42,6 +49,16 @@ function initBeginEndMarker() {
     endMarker.setZindex(110);
     beginMarker.setTitle("start");
     endMarker.setTitle("end")
+}
+
+function initSearchResultMarker() {
+    searchResultMarker = new ZDC.Marker(latlon);
+    /*
+    *  スタートとゴールのウィジットが他のマーカの
+    *  下にならないようにz-indexを設定します
+    */
+    searchResultMarker.setZindex(109);
+    searchResultMarker.setTitle("result of searching for destination search");
 }
 /* クリックした地点の緯度経度を表示する */
 function getClickLatLon() {
@@ -154,8 +171,8 @@ function createTr(text,latlon) {
 
         /* クリックされた駅の緯度経度を保存 */
         select_eki_latlon = latlon;
-        defaultMarkerDisp(select_eki_latlon);
-
+        searchResultMarker.moveLatLon(latlon);
+        searchResultMarker.visible();
     });
 
     td.appendChild(div);
