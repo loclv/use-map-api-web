@@ -10,6 +10,8 @@ var map,
     endMarker,
     searchResultMarker;
 
+var select_eki_latlon = {}, imgdir ='../../image/search/';
+
 function loadMap() {
 
     map = new ZDC.Map(
@@ -39,8 +41,14 @@ function zoomOut() {
 }
 // ----------------------------------------------------
 function initBeginEndMarker() {
-    beginMarker = new ZDC.Marker(latlon, ZDC.MARKER_COLOR_ID_GREEN_S);
-    endMarker = new ZDC.Marker(latlon, ZDC.MARKER_COLOR_ID_RED_S);
+    beginMarker = new ZDC.Marker(latlon, {
+            color: ZDC.MARKER_COLOR_ID_GREEN_L,
+            number: ZDC.MARKER_NUMBER_ID_1_L
+        });
+    endMarker = new ZDC.Marker(latlon, {
+            color: ZDC.MARKER_COLOR_ID_GREEN_L,
+            number: ZDC.MARKER_NUMBER_ID_2_L
+        });
     /*
     *  スタートとゴールのウィジットが他のマーカの
     *  下にならないようにz-indexを設定します
@@ -52,7 +60,10 @@ function initBeginEndMarker() {
 }
 
 function initSearchResultMarker() {
-    searchResultMarker = new ZDC.Marker(latlon);
+    searchResultMarker = new ZDC.Marker(latlon, {
+        color: ZDC.MARKER_COLOR_ID_GREEN_L,
+        number: ZDC.MARKER_NUMBER_ID_STAR_S
+    });
     /*
     *  スタートとゴールのウィジットが他のマーカの
     *  下にならないようにz-indexを設定します
@@ -171,41 +182,6 @@ function createTr(text,latlon) {
     return tr;
 }
 
-var from,
-    to,
-    select_eki_latlon = {}, imgdir ='../../image/search/',
-    guyde_type = {
-    'start': {
-        custom: {
-            base: {
-                src: imgdir + 'route_bg.png',
-                imgSize: new ZDC.WH(35, 35),
-                imgTL: new ZDC.TL(0, 0)
-            },
-            content: {
-                src: imgdir + 'route_cat.png',
-                imgSize: new ZDC.WH(35, 35),
-                imgTL: new ZDC.TL(0, 0)
-            }
-        },
-        offset: ZDC.Pixel(0, -36)
-    },
-    'end': {
-        custom: {
-            base: {
-                src: imgdir + 'route_bg.png',
-                imgSize: new ZDC.WH(35, 35),
-                imgTL: new ZDC.TL(38, 0)
-            },
-            content: {
-                src: imgdir + 'route_cat.png',
-                imgSize: new ZDC.WH(35, 35),
-                imgTL: new ZDC.TL(35, 0)
-            }
-        },
-        offset: ZDC.Pixel(0, -36)
-    }
-};
 var line_property = {
     '通常通路':   {strokeColor: '#3000ff', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'},
     '横断歩道':   {strokeColor: '#008E00', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'},
@@ -224,13 +200,11 @@ var line_property = {
 /* ルート探索ボタン */
 function searchRoute() {
     NProgress.set(0.0);
-    from = beginMarker.getLatLon();
-    to   = endMarker.getLatLon();
 
     /* 歩行者ルート探索を実行 */
     ZDC.Search.getRouteByWalk({
-        from: from,
-        to: to
+        from: beginMarker.getLatLon(),
+        to: endMarker.getLatLon()
     },function(status, res) {
         if (status.code == '000') {
             /* 取得成功 */
@@ -284,7 +258,6 @@ function writeRoute(status, res) {
 var msg_info;
 /* マーカクリックイベント */
 function markerClick() {
-
     var html = '<div style = "width: 256px; height: 112px; background-color: #00D5FF;">';
     html += '<table border="2" style="width: 180px;">';
     html += '<tr><td width="35%" style="font-size: 12pt;">通路種別</td><td style="font-size: 12pt;">' +

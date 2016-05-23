@@ -3,12 +3,13 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
-<script src="http://api.its-mo.com/cgi/loader.cgi?key=JSZ752c40ded32d&ver=2.0&api=zdcmap.js,search.js,shape.js&enc=EUC&force=1"></script>
+<script src="http://api.its-mo.com/cgi/loader.cgi?key=JSZ752c40ded32d&ver=2.0&api=zdcmap.js,search.js,shape.js,userwidget.js&enc=EUC&force=1"></script>
 
 </head>
 
 <body onload="loadMap();">
     <div id="ZMap" style="min-width: 100%; min-height: 100%; z-index: -1; position: absolute;"></div>
+    <br>
     <br>
     <h4 id="h4label" class="center-block text-center" style="width: 36%; background-color: #00D5FF; border-radius: 48px; border-color: #00D5FF;">
         touch the map to set begin point
