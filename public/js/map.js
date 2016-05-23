@@ -130,10 +130,10 @@ function writeTable(res) {
     var table = document.createElement('table');
     table.style.width = '100%';
 
-    for (var i=0,l=item.length; i<l; i++) {
+    for (var i=0, l=item.length; i<l; i++) {
 
         var tbody = document.createElement('tbody');
-        var tr = createTr(item[i].poi.text,item[i].poi.latlon);
+        var tr = createTr(item[i].poi.text, item[i].poi.latlon);
         tbody.appendChild(tr);
         table.appendChild(tbody);
     }
@@ -222,7 +222,7 @@ var line_property = {
 
 /* ルート探索ボタン */
 function searchRoute() {
-
+    NProgress.set(0.0);
     from = beginMarker.getLatLon();
     to   = endMarker.getLatLon();
 
@@ -240,6 +240,7 @@ function searchRoute() {
             alert(status.text);
         }
     });
+    NProgress.set(1.0);
 }
 
 var pl = [],
