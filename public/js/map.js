@@ -103,7 +103,7 @@ function searchByWordClick(){
 
 /* 検索成功時の処理 */
 function execSearch(word){
-
+    NProgress.set(0.0);
     ZDC.Search.getStationByWord({word : word}, function(status, res){
         if (status.code == '000') {
             initTable();
@@ -113,6 +113,7 @@ function execSearch(word){
             alert(status.text);
         }
     });
+    NProgress.set(1.0);
 }
 
 /* 駅検索結果テーブル作成 */
