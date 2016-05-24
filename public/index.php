@@ -29,6 +29,7 @@
         </div>
     </div>
     <!-- Bootstrap -->
+    <script src="js/jquery-2.2.4.min.js"></script>
     <link href="css/bootstrap.css" rel="stylesheet">
     <script src="js/bootstrap.js"></script>
 
