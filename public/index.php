@@ -4,7 +4,8 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
 <script src="http://api.its-mo.com/cgi/loader.cgi?key=JSZ752c40ded32d&ver=2.0&api=zdcmap.js,search.js,shape.js,userwidget.js&enc=EUC&force=1"></script>
-
+<!-- Map -->
+<script src="js/map.js"></script>
 </head>
 
 <body onload="loadMap();">
@@ -33,8 +34,6 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <script src="js/bootstrap.js"></script>
 
-    <!-- Map -->
-    <script src="js/map.js"></script>
     <!-- NProgress -->
     <script src='js/nprogress.js'></script>
     <link rel='stylesheet' href='css/nprogress.css'/>
