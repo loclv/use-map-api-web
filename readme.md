@@ -4,6 +4,7 @@
 
 **blog** is name of project
 ```sh
+$ git clone https://github.com/loclv/use-map-api-web blog
 $ cd blog/
 $ sudo chmod 755 bootstrap/cache/
 $ sudo chmod 755 storage

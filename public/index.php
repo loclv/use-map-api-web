@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
 <head>
 
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
-<script src="http://api.its-mo.com/cgi/loader.cgi?key=JSZ752c40ded32d&ver=2.0&api=zdcmap.js,search.js,shape.js,userwidget.js&enc=EUC&force=1"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="http://api.its-mo.com/cgi/loader.cgi?key=JSZ752c40ded32d&ver=2.0&api=zdcmap.js,search.js,shape.js,userwidget.js&force=1"></script>
 <!-- Map -->
 <script src="js/map.js"></script>
 </head>
