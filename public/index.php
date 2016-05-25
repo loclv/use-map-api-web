@@ -3,6 +3,8 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Public key JSZ752c40ded32d can run in my localhost-->
+<!-- My key     JSZ1b90e7b67434 can run in my free host-->
 <script src="http://api.its-mo.com/cgi/loader.cgi?key=JSZ1b90e7b67434&ver=2.0&api=zdcmap.js,search.js,shape.js,userwidget.js&force=1"></script>
 <!-- Map -->
 <script src="js/map.js"></script>
@@ -29,6 +31,30 @@
         <div id="search-result" style="overflow: scroll; height: 150px">
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">情報</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <p id="dialogOutputText"></p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+              </div>
+
+        </div>
+    </div>
+
     <!-- Bootstrap -->
     <script src="js/jquery-2.2.4.min.js"></script>
     <link href="css/bootstrap.css" rel="stylesheet">

@@ -1,6 +1,7 @@
 
-/* 東京 */
+
 var map,
+    /* 東京 */
     lat = 35.6778614,
     lon = 139.7703167,
     latlon = new ZDC.LatLon(lat, lon),
@@ -8,9 +9,9 @@ var map,
     isSearchRouteComplete = true,
     beginMarker,
     endMarker,
-    searchResultMarker;
-
-var select_eki_latlon = {}, imgdir ='../../image/search/';
+    searchResultMarker,
+    select_eki_latlon = {},
+    imgdir ='../../image/search/';
 
 function loadMap() {
 
@@ -121,7 +122,8 @@ function execSearch(word){
             writeTable(res);
         } else {
             /* 取得失敗 */
-            alert(status.text);
+            document.getElementById("dialogOutputText").innerHTML = status.text;
+            $("#myModal").modal("show");
         }
     });
     NProgress.set(1.0);
@@ -212,7 +214,8 @@ function searchRoute() {
             writeRoute(status, res);
         } else {
             /* 取得失敗 */
-            alert(status.text);
+            document.getElementById("dialogOutputText").innerHTML = status.text;
+            $("#myModal").modal("show");
         }
     });
     NProgress.set(1.0);
@@ -258,11 +261,11 @@ function writeRoute(status, res) {
 var msg_info;
 /* マーカクリックイベント */
 function markerClick() {
-    var html = '<div style = "width: 256px; height: 112px; background-color: #00D5FF;">';
-    html += '<table border="2" style="width: 180px;">';
-    html += '<tr><td width="35%" style="font-size: 12pt;">通路種別</td><td style="font-size: 12pt;">' +
+    var html = '<div style = "width: 256px; height: 112px;">';
+    html += '<table class="table" border="2" style="width: 180px;">';
+    html += '<tr class="success"><td width="35%" style="font-size: 12pt;">通路種別</td><td style="font-size: 12pt;">' +
         this.link.structureType + '</td></tr>';
-    html += '<tr><td style="font-size: 12pt;">構造種別</td><td style="font-size: 12pt;">' +
+    html += '<tr class="info"><td style="font-size: 12pt;">構造種別</td><td style="font-size: 12pt;">' +
         this.link.type + '</td></tr></tbody></table></div>';
     if (typeof msg_info != 'undefined') {
         map.removeWidget(msg_info);
