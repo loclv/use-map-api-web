@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Public key JSZ752c40ded32d can run in my localhost-->
 <!-- My key     JSZ1b90e7b67434 can run in my free host-->
-<script src="http://api.its-mo.com/cgi/loader.cgi?key=JSZ1b90e7b67434&ver=2.0&api=zdcmap.js,search.js,shape.js,userwidget.js&force=1"></script>
+<script src="http://api.its-mo.com/cgi/loader.cgi?key=JSZ752c40ded32d&ver=2.0&api=zdcmap.js,search.js,shape.js,userwidget.js&force=1"></script>
 <!-- Map -->
 <script src="js/map.js"></script>
 </head>
@@ -15,7 +15,7 @@
     <br>
     <br>
     <h4 id="h4label" class="center-block text-center" style="width: 36%; background-color: #00D5FF; border-radius: 48px; border-color: #00D5FF;">
-        touch the map to set begin point
+        出発地点を設定ため、地図にクリックしてくだいさい
     </h4>
     <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF;background-color: #00D5FF; font-size: 24px;" id="zoom_in_btn" onclick="zoomIn()">
         +
@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
                     </div>
               </div>
 

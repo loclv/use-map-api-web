@@ -92,12 +92,12 @@ function getClickLatLon() {
 function changeInforLabel(isBeginPoint) {
     if (isBeginPoint) {
         document.getElementById("h4label").innerHTML =
-            "touch again to chose destination point and search route";
+            "目的地地点を設定ため、地図にクリックしてくだいさい";
         document.getElementById("h4label").style.backgroundColor =
             "#00FA9A";
     } else {
         document.getElementById("h4label").innerHTML =
-            "touch the map to set begin point";
+            "出発地点を設定ため、地図にクリックしてくだいさい";
         document.getElementById("h4label").style.backgroundColor =
             "#00D5FF";
     }
