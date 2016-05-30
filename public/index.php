@@ -7,7 +7,13 @@
 <!-- My key     JSZ1b90e7b67434 can run in my free host-->
 <script src="http://api.its-mo.com/cgi/loader.cgi?key=JSZ1b90e7b67434&ver=2.0&api=zdcmap.js,search.js,shape.js,userwidget.js&force=1"></script>
 <!-- Map -->
-<script src="js/map.js"></script>
+<script src="js/map/init_map.js"></script>
+<script src="js/map/search_by_word.js"></script>
+<script src="js/map/search_route.js"></script>
+<script src="js/map/zoom.js"></script>
+<script src="js/map/marker/msg_info.js"></script>
+<script src="js/map/marker/drag.js"></script>
+
 </head>
 
 <body onload="loadMap();">
