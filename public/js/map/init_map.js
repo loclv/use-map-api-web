@@ -29,6 +29,18 @@ function loadMap() {
     initSearchResultMarker();
     map.addWidget(searchResultMarker);
     searchResultMarker.hidden();
+
+    /* 地図上の緯度経度を取得(getPointerPosition)できるようにする */
+    map.pointerPositionOn();
+
+    /* 地図にイベントを追加 */
+    // when mouse move too fast to position in map not in marker
+    ZDC.addListener(map, ZDC.MAP_MOUSEMOVE, onMouseMove);
+    ZDC.addListener(map, ZDC.MAP_MOUSEUP, onMouseUp);
+
+    /* documentにイベントを追加 */
+    // when mouse up outside of the map, onMouseUp still can run
+    ZDC.addDomListener(document, 'mouseup', onMouseUp);
 }
 // ----------------------------------------------------
 function initBeginEndMarker() {
@@ -48,6 +60,11 @@ function initBeginEndMarker() {
     endMarker.setZindex(110);
     beginMarker.setTitle("start");
     endMarker.setTitle("end");
+
+    /* マーカにイベントを追加 */
+    ZDC.addListener(beginMarker, ZDC.MARKER_MOUSEMOVE, onMouseMove);
+    ZDC.addListener(beginMarker, ZDC.MARKER_MOUSEDOWN, onMouseDown);
+    ZDC.addListener(beginMarker, ZDC.MARKER_MOUSEUP, onMouseUp);
 }
 
 function initSearchResultMarker() {
