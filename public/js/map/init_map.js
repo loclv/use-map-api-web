@@ -49,7 +49,7 @@ function initBeginEndMarker() {
             number: ZDC.MARKER_NUMBER_ID_1_L
         });
     endMarker = new ZDC.Marker(latlon, {
-            color: ZDC.MARKER_COLOR_ID_GREEN_L,
+            color: ZDC.MARKER_COLOR_ID_RED_L,
             number: ZDC.MARKER_NUMBER_ID_2_L
         });
     /*
@@ -62,9 +62,9 @@ function initBeginEndMarker() {
     endMarker.setTitle("end");
 
     /* マーカにイベントを追加 */
-    ZDC.addListener(beginMarker, ZDC.MARKER_MOUSEMOVE, onMouseMove);
-    ZDC.addListener(beginMarker, ZDC.MARKER_MOUSEDOWN, onMouseDown);
-    ZDC.addListener(beginMarker, ZDC.MARKER_MOUSEUP, onMouseUp);
+    ZDC.addListener(endMarker, ZDC.MARKER_MOUSEMOVE, onMouseMove);
+    ZDC.addListener(endMarker, ZDC.MARKER_MOUSEDOWN, onMouseDown);
+    ZDC.addListener(endMarker, ZDC.MARKER_MOUSEUP, onMouseUp);
 }
 
 function initSearchResultMarker() {
@@ -99,12 +99,12 @@ function getClickLatLon() {
 function changeInforLabel(isBeginPoint) {
     if (isBeginPoint) {
         document.getElementById("h4label").innerHTML =
-            "目的地地点を設定ため、地図にクリックしてくだいさい";
+            "目的地点を設定ため、地図にクリックしてくだいさい。";
         document.getElementById("h4label").style.backgroundColor =
             "#00FA9A";
     } else {
         document.getElementById("h4label").innerHTML =
-            "出発地点を設定ため、地図にクリックしてくだいさい";
+            "出発地点を設定ため、地図にクリックしてくだいさい。目的地のマーカをドラッグできます。";
         document.getElementById("h4label").style.backgroundColor =
             "#00D5FF";
     }

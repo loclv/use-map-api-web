@@ -3,17 +3,12 @@ var difLat,
     isDragging = false;
 
 /* マウスダウンイベント処理 */
-function onMouseDown(isBeginMarker) {
+function onMouseDown() {
     /* マウスダウン位置の緯度経度とマーカの緯度経度の差分を保持 */
     var cLatLon = map.getPointerPosition();
     isDragging = true;
-    if(isBeginMarker) {
-        difLat = cLatLon.lat - beginMarker.getLatLon().lat;
-        difLon = cLatLon.lon - beginMarker.getLatLon().lon;
-    } else {
-        difLat = cLatLon.lat - endMarker.getLatLon().lat;
-        difLon = cLatLon.lon - endMarker.getLatLon().lon;
-    }
+    difLat = cLatLon.lat - endMarker.getLatLon().lat;
+    difLon = cLatLon.lon - endMarker.getLatLon().lon;
 }
 
 /* マウスムーブイベント処理 */
@@ -26,7 +21,7 @@ function onMouseMove() {
         var mkLat = latlon.lat - difLat;
         var mkLon = latlon.lon - difLon;
         var mkrLatLon = new ZDC.LatLon(mkLat, mkLon);
-        beginMarker.moveLatLon(mkrLatLon);
+        endMarker.moveLatLon(mkrLatLon);
     }
 }
 
@@ -34,5 +29,6 @@ function onMouseMove() {
 function onMouseUp() {
     if(isDragging) {
         isDragging = false;
+        searchRoute();
     }
 }
