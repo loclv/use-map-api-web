@@ -13,19 +13,29 @@
 <script src="js/map/zoom.js"></script>
 <script src="js/map/marker/msg_info.js"></script>
 <script src="js/map/marker/drag.js"></script>
+<script src="js/map/scale_bar.js"></script>
 
 </head>
 
 <body onload="loadMap();">
     <div id="ZMap" style="min-width: 100%; min-height: 100%; z-index: -1; position: absolute;"></div>
     <br>
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">
+            |||
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+            <li role="presentation"><a role="menuitem" tabindex="-1" onclick="showScaleBar()">show scale bar</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" onclick="hideScaleBar()">hide scale bar</a></li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.zenrin-datacom.net/">About ZDC</a></li>
+        </ul>
+    </div>
     <br>
     <h4 id="h4label" class="center-block text-center" style="width: 36%; background-color: #00D5FF; border-color: #00D5FF;">
         出発地点を設定ため、地図にクリックしてくだいさい。目的地のマーカをドラッグできます。
     </h4>
-    <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF;background-color: #00D5FF; font-size: 24px;" id="option_btn">
-        |||
-    </button>
     <br>
     <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF;background-color: #00D5FF; font-size: 24px;" id="zoom_in_btn" onclick="zoomIn()">
         +
@@ -35,9 +45,12 @@
         -
     </button>
 
-    <div id="search-area" style="width: 600px; height: 175px; bottom: 0px; left:20px; position:absolute; background-color: #00D5FF;" class="panel-success">
-        <input type="text" class="form-control" id="word" value="東京" placeholder="住所">
-        <input type="button" class="btn btn-success" id="search-btn" value='検索' onclick='searchByWordClick();'>
+    <div id="search-area" style="width: 600px; height: 175px; bottom: 20px; left:20px; position:absolute; background-color: #00D5FF;">
+        <div class="inline-block">
+            <input type="text" class="form-control" id="word" value="東京" placeholder="住所">
+            <input type="button" class="btn btn-success" id="search-btn" value='検索' onclick='searchByWordClick();'>
+        </div>
+
         <div id="search-result" style="overflow: scroll; height: 150px">
         </div>
     </div>

@@ -46,6 +46,9 @@ function writeTable(res) {
         var tr = createTr(item[i].poi.text, item[i].poi.latlon);
         tbody.appendChild(tr);
         table.appendChild(tbody);
+        table.style.backgroundColor = '#00D5FF';
+        table.style.height = 150 + "px";
+        table.style.bottom = 40 + "px";
     }
     document.getElementById('search-result').appendChild(table);
 }
