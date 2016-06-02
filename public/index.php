@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Public key JSZ752c40ded32d can run in my localhost-->
 <!-- My key     JSZ1b90e7b67434 can run in my free host-->
-<script src="http://api.its-mo.com/cgi/loader.cgi?key=JSZ752c40ded32d&ver=2.0&api=zdcmap.js,search.js,shape.js,userwidget.js&force=1"></script>
+<script src="http://api.its-mo.com/cgi/loader.cgi?key=JSZ1b90e7b67434&ver=2.0&api=zdcmap.js,search.js,shape.js,userwidget.js&force=1"></script>
 <!-- Map -->
 <script src="js/map/init_map.js"></script>
 <script src="js/map/search_by_word.js"></script>
@@ -21,7 +21,7 @@
     <div id="ZMap" style="min-width: 100%; min-height: 100%; z-index: -1; position: absolute;"></div>
     <br>
     <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" style="background-color: #00D5FF; border-color: #00D5FF;" id="menu1" type="button" data-toggle="dropdown">
+        <button class="btn dropdown-toggle" style="background-color: #00D5FF; border-color: #00D5FF;" id="menu1" type="button" data-toggle="dropdown">
             |||
             <span class="caret"></span>
         </button>
@@ -35,15 +35,15 @@
     <h4 id="h4label" class="label center-block text-center" style="width: 36%; background-color: #00D5FF; border-color: #00D5FF;">
         出発地点を設定ため、地図にクリックしてくだいさい。目的地のマーカをドラッグできます。
     </h4>
-    <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF;background-color: #00D5FF; font-size: 24px;" id="zoom_in_btn" onclick="zoomIn()">
+    <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF; background-color: #00D5FF; font-size: 24px;" id="zoom_in_btn" onclick="zoomIn()">
         +
     </button>
-    <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF;background-color: #00D5FF; font-size: 24px;" id="zoom_out_btn" onclick="zoomOut()">
+    <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF; background-color: #00D5FF; font-size: 24px;" id="zoom_out_btn" onclick="zoomOut()">
         -
     </button>
 
     <div id="search-area" style="width: 512px; bottom: 64px; background-color: #00D5FF; position: absolute; margin-right: 32%; margin-left: 32%;">
-        <div id="search-result">
+        <div id="search-result" style="overflow: scroll; height: 150px; display: none;">
         </div>
         <input type="text" class="form-control" style="text-align: center;" id="word" value="東京" placeholder="住所">
     </div>

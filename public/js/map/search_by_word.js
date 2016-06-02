@@ -1,6 +1,6 @@
 // ----------------------------------------------------
 /* 検索ボタン */
-function searchByWordClick(){
+function searchByWordClick() {
     var word = document.getElementById('word').value;
     if (word == '') {
         return;
@@ -10,12 +10,16 @@ function searchByWordClick(){
 }
 
 /* 検索成功時の処理 */
-function execSearch(word){
+function execSearch(word) {
     NProgress.set(0.0);
     ZDC.Search.getStationByWord({word : word}, function(status, res){
         if (status.code == '000') {
             initTable();
             writeTable(res);
+            document.getElementById('search-result').style.display = "block";
+            document.getElementById('search-btn').style.backgroundColor = '#00D5FF';
+            document.getElementById('search-btn').innerHTML = 'クリア';
+            document.getElementById('search-btn').onclick = clearResultTable;
         } else {
             /* 取得失敗 */
             document.getElementById("dialogOutputText").innerHTML = status.text;
@@ -47,7 +51,7 @@ function writeTable(res) {
         tbody.appendChild(tr);
         table.appendChild(tbody);
         table.style.backgroundColor = '#00D5FF';
-        table.style.height = 150 + "px";
+        table.style.height = 148 + "px";
         table.style.bottom = 40 + "px";
     }
     document.getElementById('search-result').appendChild(table);
@@ -81,4 +85,11 @@ function createTr(text,latlon) {
     td.appendChild(div);
     tr.appendChild(td);
     return tr;
+}
+
+function clearResultTable () {
+    document.getElementById('search-result').style.display = "none";
+    document.getElementById('search-btn').style.backgroundColor = '#5cb85c';
+    document.getElementById('search-btn').innerHTML = '検索';
+    document.getElementById('search-btn').onclick = searchByWordClick;
 }
