@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Public key JSZ752c40ded32d can run in my localhost-->
 <!-- My key     JSZ1b90e7b67434 can run in my free host-->
-<script src="http://api.its-mo.com/cgi/loader.cgi?key=JSZ1b90e7b67434&ver=2.0&api=zdcmap.js,search.js,shape.js,userwidget.js&force=1"></script>
+<script src="http://api.its-mo.com/cgi/loader.cgi?key=JSZ752c40ded32d&ver=2.0&api=zdcmap.js,search.js,shape.js,userwidget.js&force=1"></script>
 <!-- Map -->
 <script src="js/map/init_map.js"></script>
 <script src="js/map/search_by_word.js"></script>
@@ -21,39 +21,35 @@
     <div id="ZMap" style="min-width: 100%; min-height: 100%; z-index: -1; position: absolute;"></div>
     <br>
     <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">
+        <button class="btn btn-primary dropdown-toggle" style="background-color: #00D5FF; border-color: #00D5FF;" id="menu1" type="button" data-toggle="dropdown">
             |||
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-            <li role="presentation"><a role="menuitem" tabindex="-1" onclick="showScaleBar()">show scale bar</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" onclick="hideScaleBar()">hide scale bar</a></li>
+            <li id="show_scale_var_menu_list" role="presentation"><a role="menuitem" tabindex="-1" onclick="showScaleBar()">show scale bar</a></li>
+            <li id="hide_scale_var_menu_list" style="display: none;" role="presentation"><a role="menuitem" tabindex="-1" onclick="hideScaleBar()">hide scale bar</a></li>
             <li role="presentation" class="divider"></li>
             <li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.zenrin-datacom.net/">About ZDC</a></li>
         </ul>
     </div>
-    <br>
-    <h4 id="h4label" class="center-block text-center" style="width: 36%; background-color: #00D5FF; border-color: #00D5FF;">
+    <h4 id="h4label" class="label center-block text-center" style="width: 36%; background-color: #00D5FF; border-color: #00D5FF;">
         出発地点を設定ため、地図にクリックしてくだいさい。目的地のマーカをドラッグできます。
     </h4>
-    <br>
     <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF;background-color: #00D5FF; font-size: 24px;" id="zoom_in_btn" onclick="zoomIn()">
         +
     </button>
-    <br>
     <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF;background-color: #00D5FF; font-size: 24px;" id="zoom_out_btn" onclick="zoomOut()">
         -
     </button>
 
-    <div id="search-area" style="width: 600px; height: 175px; bottom: 20px; left:20px; position:absolute; background-color: #00D5FF;">
-        <div class="inline-block">
-            <input type="text" class="form-control" id="word" value="東京" placeholder="住所">
-            <input type="button" class="btn btn-success" id="search-btn" value='検索' onclick='searchByWordClick();'>
+    <div id="search-area" style="width: 512px; bottom: 64px; background-color: #00D5FF; position: absolute; margin-right: 32%; margin-left: 32%;">
+        <div id="search-result">
         </div>
-
-        <div id="search-result" style="overflow: scroll; height: 150px">
-        </div>
+        <input type="text" class="form-control" style="text-align: center;" id="word" value="東京" placeholder="住所">
     </div>
+    <button class="btn btn-success" style="width: 142px; bottom: 24px; position: absolute; margin-right: 38%; margin-left: 38%;"  id="search-btn" onclick='searchByWordClick();'>
+        検索
+    </button>
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
