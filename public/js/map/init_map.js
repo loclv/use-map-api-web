@@ -41,6 +41,8 @@ function loadMap() {
     /* documentにイベントを追加 */
     // when mouse up outside of the map, onMouseUp still can run
     ZDC.addDomListener(document, 'mouseup', onMouseUp);
+
+    add_submap();
 }
 // ----------------------------------------------------
 function initBeginEndMarker() {

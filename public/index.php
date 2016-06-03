@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Public key JSZ752c40ded32d can run in my localhost-->
 <!-- My key     JSZ1b90e7b67434 can run in my free host-->
-<script src="http://api.its-mo.com/cgi/loader.cgi?key=JSZ1b90e7b67434&ver=2.0&api=zdcmap.js,search.js,shape.js,userwidget.js&force=1"></script>
+<script src="http://api.its-mo.com/cgi/loader.cgi?key=JSZ752c40ded32d&ver=2.0&api=zdcmap.js,search.js,shape.js,userwidget.js,submap.js&force=1"></script>
 <!-- Map -->
 <script src="js/map/init_map.js"></script>
 <script src="js/map/search_by_word.js"></script>
@@ -14,7 +14,7 @@
 <script src="js/map/marker/msg_info.js"></script>
 <script src="js/map/marker/drag.js"></script>
 <script src="js/map/scale_bar.js"></script>
-
+<script src="js/map/submap.js"></script>
 </head>
 
 <body onload="loadMap();">
@@ -26,8 +26,8 @@
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-            <li id="show_scale_var_menu_list" role="presentation"><a role="menuitem" tabindex="-1" onclick="showScaleBar()">show scale bar</a></li>
-            <li id="hide_scale_var_menu_list" style="display: none;" role="presentation"><a role="menuitem" tabindex="-1" onclick="hideScaleBar()">hide scale bar</a></li>
+            <li id="show_scale_var_menu_list" role="presentation"><a role="menuitem" tabindex="-1" onclick="showScaleBar()">show scale bar in bottom left of screen</a></li>
+            <li id="hide_scale_var_menu_list" style="display: none;" role="presentation"><a role="menuitem" tabindex="-1" onclick="hideScaleBar()">hide scale bar in bottom left of screen</a></li>
             <li role="presentation" class="divider"></li>
             <li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.zenrin-datacom.net/">About ZDC</a></li>
         </ul>
@@ -47,7 +47,7 @@
         </div>
         <input type="text" class="form-control" style="text-align: center;" id="word" value="東京" placeholder="住所">
     </div>
-    <button class="btn btn-success" style="width: 142px; bottom: 24px; position: absolute; margin-right: 38%; margin-left: 38%;"  id="search-btn" onclick='searchByWordClick();'>
+    <button class="btn btn-success" style="width: 186px; bottom: 24px; position: absolute; margin-right: 36%; margin-left: 36%;"  id="search-btn" onclick='searchByWordClick();'>
         検索
     </button>
 
@@ -55,21 +55,21 @@
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
 
-              <!-- Modal content-->
-              <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">情報</h4>
-                    </div>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">情報</h4>
+                </div>
 
-                    <div class="modal-body">
-                        <p id="dialogOutputText"></p>
-                    </div>
+                <div class="modal-body">
+                    <p id="dialogOutputText"></p>
+                </div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                    </div>
-              </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                </div>
+            </div>
 
         </div>
     </div>
