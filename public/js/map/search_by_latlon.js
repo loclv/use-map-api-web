@@ -4,24 +4,20 @@ function searchShop() {
     searchByLatlon('0014000180');
 }
 
-function searchGas() {
-    searchByLatlon('0011000130');
+function searchSupermarket() {
+    searchByLatlon('0014000170');
 }
 
 function searchByLatlon (codeString) {
+    deleteMarkerSearchByLatlon();
     var latlonForSearch;
-    latlonForSearch = new ZDC.LatLon(35.6863166, 139.695047)
-    if (isBeginPoint) {
-        latlonForSearch = endMarker.getLatLon();
-    } else {
-        latlonForSearch = beginMarker.getLatLon();
-    }
+    latlonForSearch = endMarker.getLatLon();
     /* 緯度経度で周辺のPOI探索を実行 */
     /* ジャンルコード（コンビニ：0014000180） */
     ZDC.Search.getPoiByLatLon({
         latlon: latlonForSearch,
         genrecode: codeString,
-        limit: '256'
+        limit: '8'
     },function(status, res) {
         if (status.code == '000') {
             /* 取得成功 */
@@ -69,5 +65,5 @@ function deleteMarkerSearchByLatlon() {
         map.removeWidget(searchByLatlonMrkArr.shift());
     }
     /* 吹き出しを閉じる */
-    msg.close();
+    // msg.close();
 };

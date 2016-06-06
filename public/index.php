@@ -30,7 +30,7 @@
             <li id="show_scale_var_menu_list" role="presentation"><a role="menuitem" tabindex="-1" onclick="showScaleBar()">show scale bar in bottom left of screen</a></li>
             <li id="hide_scale_var_menu_list" style="display: none;" role="presentation"><a role="menuitem" tabindex="-1" onclick="hideScaleBar()">hide scale bar in bottom left of screen</a></li>
             <li role="presentation" class="divider"></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" onclick="searchGas()">ガソリンスタンド</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" onclick="searchSupermarket()">スーパー</a></li>
             <!-- <li role="presentation"><a role="menuitem" tabindex="-1">park</a></li> -->
             <li role="presentation"><a role="menuitem" tabindex="-1" onclick="searchShop()">コンビニ</a></li>
             <!-- <li role="presentation"><a role="menuitem" tabindex="-1">restaurent</a></li> -->
