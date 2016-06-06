@@ -103,11 +103,11 @@ function changeInforLabel(isBeginPoint) {
         document.getElementById("h4label").innerHTML =
             "目的地点を設定ため、地図にクリックしてくだいさい。";
         document.getElementById("h4label").style.backgroundColor =
-            "#00FA9A";
+            "#0B3B0B";
     } else {
         document.getElementById("h4label").innerHTML =
             "出発地点を設定ため、地図にクリックしてくだいさい。目的地のマーカをドラッグできます。";
         document.getElementById("h4label").style.backgroundColor =
-            "#00D5FF";
+            "#0B0B3B";
     }
 }

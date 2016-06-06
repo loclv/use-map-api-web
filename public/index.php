@@ -15,6 +15,7 @@
 <script src="js/map/marker/drag.js"></script>
 <script src="js/map/scale_bar.js"></script>
 <script src="js/map/submap.js"></script>
+<script src="js/map/search_by_latlon.js"></script>
 </head>
 
 <body onload="loadMap();">
@@ -29,10 +30,16 @@
             <li id="show_scale_var_menu_list" role="presentation"><a role="menuitem" tabindex="-1" onclick="showScaleBar()">show scale bar in bottom left of screen</a></li>
             <li id="hide_scale_var_menu_list" style="display: none;" role="presentation"><a role="menuitem" tabindex="-1" onclick="hideScaleBar()">hide scale bar in bottom left of screen</a></li>
             <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" onclick="searchGas()">ガソリンスタンド</a></li>
+            <!-- <li role="presentation"><a role="menuitem" tabindex="-1">park</a></li> -->
+            <li role="presentation"><a role="menuitem" tabindex="-1" onclick="searchShop()">コンビニ</a></li>
+            <!-- <li role="presentation"><a role="menuitem" tabindex="-1">restaurent</a></li> -->
+            <li role="presentation" class="divider"></li>
             <li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.zenrin-datacom.net/">About ZDC</a></li>
         </ul>
+
     </div>
-    <h4 id="h4label" class="label center-block text-center" style="width: 36%; background-color: #00D5FF; border-color: #00D5FF;">
+    <h4 id="h4label" class="label center-block text-center" style="width: 36%; background-color: #0B0B3B; border-color: #00D5FF;">
         出発地点を設定ため、地図にクリックしてくだいさい。目的地のマーカをドラッグできます。
     </h4>
     <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF; background-color: #00D5FF; font-size: 24px;" id="zoom_in_btn" onclick="zoomIn()">
