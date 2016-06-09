@@ -12,33 +12,56 @@ var line_property = {
     '引き込みリンク':{strokeColor: '#FF0000', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'},
     '通路外':{strokeColor: '#00FF00', strokeWeight: 8, lineOpacity: 0.5, lineStyle: 'solid'}
 };
+var isGetRouteByWalk = false;
 
-/* ルート探索ボタン */
+function switchToWalk () {
+    isGetRouteByWalk = true;
+}
+
+/* ルート探1索ボタン */
 function searchRoute() {
     NProgress.set(0.0);
 
-    /* 歩行者ルート探索を実行 */
-    ZDC.Search.getRouteByWalk({
-        from: beginMarker.getLatLon(),
-        to: endMarker.getLatLon()
-    },function(status, res) {
-        if (status.code == '000') {
-            /* 取得成功 */
-            removeAllRoute();
-            writeRoute(status, res);
-        } else {
-            /* 取得失敗 */
-            document.getElementById("dialogOutputText").innerHTML = status.text;
-            $("#myModal").modal("show");
-        }
-    });
+    if (isGetRouteByWalk) {
+        /* 歩行者ルート探索を実行 */
+        ZDC.Search.getRouteByWalk({
+            from: beginMarker.getLatLon(),
+            to: endMarker.getLatLon()
+        },function(status, res) {
+            if (status.code == '000') {
+                /* 取得成功 */
+                removeAllRoute();
+                writeWalkRoute(res);
+            } else {
+                /* 取得失敗 */
+                document.getElementById("dialogOutputText").innerHTML = status.text;
+                $("#myModal").modal("show");
+            }
+        });
+    } else {
+        /* 自動車ルート探索を実行 */
+        ZDC.Search.getRouteByDrive({
+            from: beginMarker.getLatLon(),
+            to: endMarker.getLatLon()
+        },function(status, res) {
+            if (status.code == '000') {
+                /* 取得成功 */
+                removeAllRoute();
+                writeDriveRoute(res);
+            } else {
+                /* 取得失敗 */
+                document.getElementById("dialogOutputText").innerHTML = status.text;
+                $("#myModal").modal("show");
+            }
+        });
+    }
     NProgress.set(1.0);
 }
 
 var pl = [],
     mk = [];
 /* ルートを描画します */
-function writeRoute(status, res) {
+function writeWalkRoute(res) {
     var link = res.route.link;
 
     /* 現在描画しているロードタイプを保存する */
@@ -71,6 +94,62 @@ function writeRoute(status, res) {
         }
     }
 }
+
+var line_drive_property = {
+    '高速道路': {strokeColor: '#3000ff', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'},
+    '都市高速道路': {strokeColor: '#008E00', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'},
+    '国道': {strokeColor: '#007777', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'},
+    '主要地方道': {strokeColor: '#880000', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'},
+    '都道府県道': {strokeColor: '#008800', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'},
+    '一般道路(幹線)': {strokeColor: '#000088', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'},
+    '一般道路(その他)': {strokeColor: '#880000', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'},
+    '導入路': {strokeColor: '#880000', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'},
+    '細街路(主要)': {strokeColor: '#880000', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'},
+    'フェリー航路': {},
+    '道路外': {strokeColor: '#880000', strokeWeight: 5, lineOpacity: 0.5, lineStyle: 'solid'}
+};
+
+function writeDriveRoute(res) {
+    var link = res.route.link;
+
+    var latlons = [];
+
+    for (var i=0, j=link.length; i<j; i++) {
+
+        var opt = line_drive_property[link[i].roadType];
+        var pllatlons =[];    
+
+        for (var k=0, l=link[i].line.length; k<l; k++) {
+            pllatlons.push(link[i].line[k]);
+
+            latlons[i] = link[i].line[0];
+
+            if(i == j-1 && k == 1) {
+                latlons[i+1] = link[i].line[1];
+            }
+
+        }
+        var pl = new ZDC.Polyline(pllatlons, opt);
+        map.addWidget(pl);
+
+        if (link[i].guidance != null) {
+            var guide = link[i].guidance.guideType;
+
+            /* 交差点 || 方面及び方向 || ETC */
+            var url = link[i].guidance.crossImageUri ||
+            link[i].guidance.signboardImageUri ||
+            link[i].guidance.etcImageUri;
+            if (url) {
+                var mk = new ZDC.Marker(link[i].line[0]);
+                map.addWidget(mk);
+
+                /* マーカをクリックしたときの動作 */
+                ZDC.bind(mk, ZDC.MARKER_CLICK, {link: link[i]}, markerClick);
+            }
+        }
+    }
+};
+
 
 function removeAllRoute(){
 

@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Public key JSZ752c40ded32d can run in my localhost-->
 <!-- My     key JSZ1b90e7b67434 can run in my free host-->
-<script src="http://api.its-mo.com/cgi/loader.cgi?key=JSZ1b90e7b67434&ver=2.0&api=zdcmap.js,search.js,shape.js,userwidget.js,submap.js&force=1"></script>
+<script src="http://api.its-mo.com/cgi/loader.cgi?key=JSZ752c40ded32d&ver=2.0&api=zdcmap.js,search.js,shape.js,userwidget.js,submap.js&force=1"></script>
 <!-- Map -->
 <script src="js/map/init_map.js"></script>
 <script src="js/map/search_by_word.js"></script>
@@ -27,6 +27,8 @@
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+            <li id="switch_to_walk_menu_list" role="presentation"><a role="menuitem" tabindex="-1" onclick="switchToWalk()">switch to walk</a></li>
+            <li role="presentation" class="divider"></li>
             <li id="show_scale_var_menu_list" role="presentation"><a role="menuitem" tabindex="-1" onclick="showScaleBar()">show scale bar in bottom left of screen</a></li>
             <li id="hide_scale_var_menu_list" style="display: none;" role="presentation"><a role="menuitem" tabindex="-1" onclick="hideScaleBar()">hide scale bar in bottom left of screen</a></li>
             <li role="presentation" class="divider"></li>
@@ -54,7 +56,7 @@
         </div>
         <input type="text" class="form-control" style="text-align: center;" id="word" value="東京" placeholder="住所">
     </div>
-    <button class="btn btn-success" style="width: 186px; bottom: 24px; position: absolute; margin-right: 36%; margin-left: 36%;"  id="search-btn" onclick='searchByWordClick();'>
+    <button class="btn btn-success" style="width: 196px; bottom: 24px; position: absolute; margin-right: 36%; margin-left: 36%;"  id="search-btn" onclick='searchByWordClick();'>
         検索
     </button>
 
