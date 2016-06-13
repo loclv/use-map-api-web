@@ -22,10 +22,10 @@
     <div id="ZMap" style="min-width: 100%; min-height: 100%; z-index: -1; position: absolute;"></div>
     <br>
     <div class="dropdown" style="left: 16px;">
-        <button class="btn dropdown-toggle" style="background-color: #2980b9; border-color: #2980b9;" id="menu1" type="button" data-toggle="dropdown">
+        <button class="btn dropdown-toggle" style="background-color: #0B0B3B; border-color: #0B0B3B;" id="menu1" type="button" data-toggle="dropdown">
             <img src="drop.png" role="menuitem" tabindex="-1" style="width: 16px; height: 16px;">
         </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" style="background-color: #2980b9;">
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" style="background-color: #0B0B3B;">
             <li id="switch_to_walk_menu_list" role="presentation" onclick="switchToWalk()">
                 <img src="walk.png" role="menuitem" tabindex="-1" style="width: 36px; height: 36px;">
             </li>
@@ -65,13 +65,13 @@
         </ul>
 
     </div>
-    <h4 id="h4label" class="label center-block text-center" style="width: 36%; background-color: #2980b9; border-color: #00D5FF;">
+    <h4 id="h4label" class="label center-block text-center" style="width: 36%; background-color: #0B0B3B; border-color: #00D5FF;">
         出発地点を設定ため、地図にクリックしてくだいさい。目的地のマーカをドラッグできます。
     </h4>
-    <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF; background-color: #2980b9; font-size: 24px; left: 16px; position: absolute;" id="zoom_in_btn" onclick="zoomIn()">
+    <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF; background-color: #0B0B3B; font-size: 24px; left: 16px; position: absolute;" id="zoom_in_btn" onclick="zoomIn()">
         <font color="white">+</font>
     </button>
-    <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF; background-color: #2980b9; font-size: 24px; left: 16px; top: 148px; position: absolute;" id="zoom_out_btn" onclick="zoomOut()">
+    <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF; background-color: #0B0B3B; font-size: 24px; left: 16px; top: 148px; position: absolute;" id="zoom_out_btn" onclick="zoomOut()">
         <font color="white">-</font>
     </button>
 
