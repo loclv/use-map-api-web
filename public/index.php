@@ -21,23 +21,36 @@
 <body onload="loadMap();">
     <div id="ZMap" style="min-width: 100%; min-height: 100%; z-index: -1; position: absolute;"></div>
     <br>
-    <div class="dropdown">
+    <div class="dropdown" style="left: 16px">
         <button class="btn dropdown-toggle" style="background-color: #00D5FF; border-color: #00D5FF;" id="menu1" type="button" data-toggle="dropdown">
             |||
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-            <li id="switch_to_walk_menu_list" role="presentation"><a role="menuitem" tabindex="-1" onclick="switchToWalk()">switch to walk</a></li>
+            <li id="switch_to_walk_menu_list" role="presentation" onclick="switchToWalk()">
+                <img src="walk.png" role="menuitem" tabindex="-1" style="width: 36px; height: 36px;">
+            </li>
+            <li id="switch_to_drive_menu_list" style="display: none;" role="presentation" onclick="switchToDrive()">
+                <img src="car.png" role="menuitem" tabindex="-1" style="width: 36px; height: 36px;">
+            </li>
             <li role="presentation" class="divider"></li>
-            <li id="show_scale_var_menu_list" role="presentation"><a role="menuitem" tabindex="-1" onclick="showScaleBar()">show scale bar in bottom left of screen</a></li>
-            <li id="hide_scale_var_menu_list" style="display: none;" role="presentation"><a role="menuitem" tabindex="-1" onclick="hideScaleBar()">hide scale bar in bottom left of screen</a></li>
+            <li id="show_scale_var_menu_list" role="presentation">
+                <a role="menuitem" tabindex="-1" onclick="showScaleBar()">スケールバーを表示</a>
+            </li>
+            <li id="hide_scale_var_menu_list" style="display: none;" role="presentation"><a role="menuitem" tabindex="-1" onclick="hideScaleBar()">hide scale bar in bottom left</a></li>
             <li role="presentation" class="divider"></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" onclick="searchSupermarket()">スーパー</a></li>
+            <li role="presentation">
+                <a role="menuitem" tabindex="-1" onclick="searchSupermarket()">スーパー</a>
+            </li>
             <!-- <li role="presentation"><a role="menuitem" tabindex="-1">park</a></li> -->
-            <li role="presentation"><a role="menuitem" tabindex="-1" onclick="searchShop()">コンビニ</a></li>
+            <li role="presentation">
+                <a role="menuitem" tabindex="-1" onclick="searchShop()">コンビニ</a>
+            </li>
             <!-- <li role="presentation"><a role="menuitem" tabindex="-1">restaurent</a></li> -->
             <li role="presentation" class="divider"></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.zenrin-datacom.net/">About ZDC</a></li>
+            <li role="presentation">
+                <a role="menuitem" tabindex="-1" href="https://www.zenrin-datacom.net/">ゼンリンデータコムについて</a>
+            </li>
         </ul>
 
     </div>

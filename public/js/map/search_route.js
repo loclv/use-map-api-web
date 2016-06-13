@@ -15,7 +15,19 @@ var line_property = {
 var isGetRouteByWalk = false;
 
 function switchToWalk () {
-    isGetRouteByWalk = true;
+    if (!isGetRouteByWalk) {
+        isGetRouteByWalk = true;
+        document.getElementById("switch_to_walk_menu_list").style.display = "none";
+        document.getElementById("switch_to_drive_menu_list").style.display = "block";
+    }
+}
+
+function switchToDrive () {
+    if (isGetRouteByWalk) {
+        isGetRouteByWalk = false;
+        document.getElementById("switch_to_drive_menu_list").style.display = "none";
+        document.getElementById("switch_to_walk_menu_list").style.display = "block";
+    }
 }
 
 /* ルート探1索ボタン */
@@ -59,7 +71,7 @@ function searchRoute() {
 }
 
 var pl = [],
-    mk = [];
+    mkList = [];
 /* ルートを描画します */
 function writeWalkRoute(res) {
     var link = res.route.link;
@@ -90,7 +102,7 @@ function writeWalkRoute(res) {
 
             /* マーカがクリックされた時のイベントを追加します */
             ZDC.bind(marker, ZDC.MARKER_CLICK,{link:link[i]}, markerClick);
-            mk.push(marker);
+            mkList.push(marker);
         }
     }
 }
@@ -129,8 +141,8 @@ function writeDriveRoute(res) {
             }
 
         }
-        var pl = new ZDC.Polyline(pllatlons, opt);
-        map.addWidget(pl);
+        pl[i] = new ZDC.Polyline(pllatlons, opt);
+        map.addWidget(pl[i]);
 
         if (link[i].guidance != null) {
             var guide = link[i].guidance.guideType;
@@ -140,11 +152,12 @@ function writeDriveRoute(res) {
             link[i].guidance.signboardImageUri ||
             link[i].guidance.etcImageUri;
             if (url) {
-                var mk = new ZDC.Marker(link[i].line[0]);
-                map.addWidget(mk);
+                var marker = new ZDC.Marker(link[i].line[0]);
+                map.addWidget(marker);
 
                 /* マーカをクリックしたときの動作 */
-                ZDC.bind(mk, ZDC.MARKER_CLICK, {link: link[i]}, markerClick);
+                ZDC.bind(marker, ZDC.MARKER_CLICK, {link: link[i]}, markerClick);
+                mkList.push(marker);
             }
         }
     }
@@ -159,10 +172,10 @@ function removeAllRoute(){
     }
     pl = [];
 
-    for (i = 0, l = mk.length; i < l; i++) {
-        map.removeWidget(mk[i]);
+    for (i = 0, l = mkList.length; i < l; i++) {
+        map.removeWidget(mkList[i]);
     }
-    mk = [];
+    mkList = [];
 
     if (typeof msg_info != 'undefined') {
         map.removeWidget(msg_info);
