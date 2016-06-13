@@ -89,7 +89,7 @@ function createTr(text,latlon) {
 
 function clearResultTable () {
     document.getElementById('search-result').style.display = "none";
-    document.getElementById('search-btn').style.backgroundColor = '#5cb85c';
+    document.getElementById('search-btn').style.backgroundColor = '#0B3B0B';
     document.getElementById('search-btn').innerHTML = '検索';
     document.getElementById('search-btn').onclick = searchByWordClick;
 }

@@ -75,12 +75,12 @@
         <font color="white">-</font>
     </button>
 
-    <div id="search-area" style="width: 512px; bottom: 64px; background-color: #00D5FF; position: absolute; margin-right: 32%; margin-left: 32%;">
+    <div id="search-area" style="width: 36%; bottom: 64px; background-color: #00D5FF; position: absolute; margin-right: 32%; margin-left: 32%;">
         <div id="search-result" style="overflow: scroll; height: 150px; display: none;">
         </div>
         <input type="text" class="form-control" style="text-align: center;" id="word" value="東京" placeholder="住所">
     </div>
-    <button class="btn btn-success" style="width: 196px; bottom: 24px; position: absolute; margin-right: 36%; margin-left: 36%;"  id="search-btn" onclick='searchByWordClick();'>
+    <button class="btn btn-success" style="width: 16%; bottom: 24px; position: absolute; margin-right: 42%; margin-left: 42%; background-color: #0B3B0B;"  id="search-btn" onclick='searchByWordClick();'>
         検索
     </button>
 
