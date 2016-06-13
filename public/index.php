@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Public key JSZ752c40ded32d can run in my localhost-->
 <!-- My     key JSZ1b90e7b67434 can run in my free host-->
-<script src="http://api.its-mo.com/cgi/loader.cgi?key=JSZ1b90e7b67434&ver=2.0&api=zdcmap.js,search.js,shape.js,userwidget.js,submap.js&force=1"></script>
+<script src="http://api.its-mo.com/cgi/loader.cgi?key=JSZ752c40ded32d&ver=2.0&api=zdcmap.js,search.js,shape.js,userwidget.js,submap.js&force=1"></script>
 <!-- Map -->
 <script src="js/map/init_map.js"></script>
 <script src="js/map/search_by_word.js"></script>
@@ -21,12 +21,11 @@
 <body onload="loadMap();">
     <div id="ZMap" style="min-width: 100%; min-height: 100%; z-index: -1; position: absolute;"></div>
     <br>
-    <div class="dropdown" style="left: 16px">
-        <button class="btn dropdown-toggle" style="background-color: #00D5FF; border-color: #00D5FF;" id="menu1" type="button" data-toggle="dropdown">
-            |||
-            <span class="caret"></span>
+    <div class="dropdown" style="left: 16px;">
+        <button class="btn dropdown-toggle" style="background-color: #2980b9; border-color: #2980b9;" id="menu1" type="button" data-toggle="dropdown">
+            <img src="drop.png" role="menuitem" tabindex="-1" style="width: 16px; height: 16px;">
         </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" style="background-color: #2980b9;">
             <li id="switch_to_walk_menu_list" role="presentation" onclick="switchToWalk()">
                 <img src="walk.png" role="menuitem" tabindex="-1" style="width: 36px; height: 36px;">
             </li>
@@ -35,33 +34,45 @@
             </li>
             <li role="presentation" class="divider"></li>
             <li id="show_scale_var_menu_list" role="presentation">
-                <a role="menuitem" tabindex="-1" onclick="showScaleBar()">スケールバーを表示</a>
+                <a role="menuitem" tabindex="-1" onclick="showScaleBar()">
+                    <font color="white">スケールバーを表示</font>
+                </a>
             </li>
-            <li id="hide_scale_var_menu_list" style="display: none;" role="presentation"><a role="menuitem" tabindex="-1" onclick="hideScaleBar()">hide scale bar in bottom left</a></li>
+            <li id="hide_scale_var_menu_list" style="display: none;" role="presentation">
+                <a role="menuitem" tabindex="-1" onclick="hideScaleBar()">
+                    <font color="white">hide scale bar in bottom left</font>
+                </a>
+            </li>
             <li role="presentation" class="divider"></li>
             <li role="presentation">
-                <a role="menuitem" tabindex="-1" onclick="searchSupermarket()">スーパー</a>
+                <a role="menuitem" tabindex="-1" onclick="searchSupermarket()">
+                    <font color="white">スーパー</font>
+                </a>
             </li>
             <!-- <li role="presentation"><a role="menuitem" tabindex="-1">park</a></li> -->
             <li role="presentation">
-                <a role="menuitem" tabindex="-1" onclick="searchShop()">コンビニ</a>
+                <a role="menuitem" tabindex="-1" onclick="searchShop()">
+                    <font color="white">コンビニ</font>
+                </a>
             </li>
             <!-- <li role="presentation"><a role="menuitem" tabindex="-1">restaurent</a></li> -->
             <li role="presentation" class="divider"></li>
             <li role="presentation">
-                <a role="menuitem" tabindex="-1" href="https://www.zenrin-datacom.net/">ゼンリンデータコムについて</a>
+                <a role="menuitem" tabindex="-1" href="https://www.zenrin-datacom.net/">
+                    <font color="white">ゼンリンデータコムについて</font>
+                </a>
             </li>
         </ul>
 
     </div>
-    <h4 id="h4label" class="label center-block text-center" style="width: 36%; background-color: #0B0B3B; border-color: #00D5FF;">
+    <h4 id="h4label" class="label center-block text-center" style="width: 36%; background-color: #2980b9; border-color: #00D5FF;">
         出発地点を設定ため、地図にクリックしてくだいさい。目的地のマーカをドラッグできます。
     </h4>
-    <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF; background-color: #00D5FF; font-size: 24px;" id="zoom_in_btn" onclick="zoomIn()">
-        +
+    <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF; background-color: #2980b9; font-size: 24px; left: 16px; position: absolute;" id="zoom_in_btn" onclick="zoomIn()">
+        <font color="white">+</font>
     </button>
-    <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF; background-color: #00D5FF; font-size: 24px;" id="zoom_out_btn" onclick="zoomOut()">
-        -
+    <button type="button" style="width: 48px; height: 48px; border-radius: 48px; border-color: #FFFFFF; background-color: #2980b9; font-size: 24px; left: 16px; top: 148px; position: absolute;" id="zoom_out_btn" onclick="zoomOut()">
+        <font color="white">-</font>
     </button>
 
     <div id="search-area" style="width: 512px; bottom: 64px; background-color: #00D5FF; position: absolute; margin-right: 32%; margin-left: 32%;">
