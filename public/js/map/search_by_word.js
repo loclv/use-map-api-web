@@ -1,7 +1,7 @@
 // ----------------------------------------------------
 /* 検索ボタン */
 function searchByWordClick() {
-    var word = document.getElementById('word').value;
+    var word = document.getElementById('input_text').value;
     if (word == '') {
         return;
     } else {

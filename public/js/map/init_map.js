@@ -60,8 +60,8 @@ function initBeginEndMarker() {
     */
     beginMarker.setZindex(110);
     endMarker.setZindex(110);
-    beginMarker.setTitle("start");
-    endMarker.setTitle("end");
+    beginMarker.setTitle("出発");
+    endMarker.setTitle("目的");
 
     /* マーカにイベントを追加 */
     ZDC.addListener(endMarker, ZDC.MARKER_MOUSEMOVE, onMouseMove);

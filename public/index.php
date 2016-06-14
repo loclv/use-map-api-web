@@ -16,6 +16,7 @@
 <script src="js/map/scale_bar.js"></script>
 <script src="js/map/submap.js"></script>
 <script src="js/map/search_by_latlon.js"></script>
+
 </head>
 
 <body onload="loadMap();">
@@ -35,12 +36,12 @@
             <li role="presentation" class="divider"></li>
             <li id="show_scale_var_menu_list" role="presentation">
                 <a role="menuitem" tabindex="-1" onclick="showScaleBar()">
-                    <font color="white">スケールバーを表示</font>
+                    <font color="white">スケールバーを表示する</font>
                 </a>
             </li>
             <li id="hide_scale_var_menu_list" style="display: none;" role="presentation">
                 <a role="menuitem" tabindex="-1" onclick="hideScaleBar()">
-                    <font color="white">hide scale bar in bottom left</font>
+                    <font color="white">スケールバーを削除する</font>
                 </a>
             </li>
             <li role="presentation" class="divider"></li>
@@ -78,7 +79,7 @@
     <div id="search-area" style="width: 36%; bottom: 64px; background-color: #00D5FF; position: absolute; margin-right: 32%; margin-left: 32%;">
         <div id="search-result" style="overflow: scroll; height: 150px; display: none;">
         </div>
-        <input type="text" class="form-control" style="text-align: center;" id="word" value="東京" placeholder="住所">
+        <input type="text" class="form-control" style="text-align: center;" id="input_text" value="東京" placeholder="住所">
     </div>
     <button class="btn btn-success" style="width: 16%; bottom: 24px; position: absolute; margin-right: 42%; margin-left: 42%; background-color: #0B3B0B;"  id="search-btn" onclick='searchByWordClick();'>
         検索
@@ -114,6 +115,7 @@
 
     <!-- NProgress -->
     <script src='js/nprogress.js'></script>
+    <script src="js/controller.js"></script>
     <link rel='stylesheet' href='css/nprogress.css'/>
 </body>
 </html>
